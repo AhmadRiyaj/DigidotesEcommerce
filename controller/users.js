@@ -57,4 +57,9 @@ async function dashboard(req, res) {
     });
     return res.render("dashboard", { req: req, res: res, wishlist: wishlist })
 }
-module.exports = { SignUp, login, signup_page, dashboard, logout }
+
+async function get_allusers(req, res) {
+    const result = await users.findAll();
+    return res.send(result);
+}
+module.exports = { SignUp, login, signup_page, dashboard, logout, get_allusers }
