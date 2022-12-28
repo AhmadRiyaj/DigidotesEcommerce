@@ -46,7 +46,7 @@ app.use(AdminRoute)
 app.use(CategoryRoute)
 app.use(SubcategoryRoute)
 
-app.listen(serverport, function () {
+app.listen(process.env.PORT || 8000, function () {
     console.log("App is running on Port 3000");
     init()
 });
