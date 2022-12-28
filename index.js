@@ -1,4 +1,5 @@
 const express = require("express");
+
 const ejs = require("ejs");
 const bodyParser = require("body-parser");
 const { serverport } = require("./config/config.server")
@@ -9,7 +10,7 @@ var cookieParser = require("cookie-parser");
 const { sequelize } = require("./models")
 
 const app = express();
-const { Homeroute, Productroute, UsersRoute, CartRoute, WishlistRoute, AdminRoute, CategoryRoute ,SubcategoryRoute} = require('./routes')
+const { Homeroute, Productroute, UsersRoute, CartRoute, WishlistRoute, AdminRoute, CategoryRoute, SubcategoryRoute } = require('./routes')
 
 // body parser for reading req data
 app.use(express.json());
@@ -45,7 +46,7 @@ app.use(AdminRoute)
 app.use(CategoryRoute)
 app.use(SubcategoryRoute)
 
-app.listen(3000, function () {
+app.listen(serverport, function () {
     console.log("App is running on Port 3000");
     init()
 });
