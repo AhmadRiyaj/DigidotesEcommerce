@@ -1,9 +1,5 @@
 if (process.env.NODE_ENV !== 'production') {
-    require('dotenv').config()
+    port = 8000;
 }
 
-module.exports = {
-    serverPort: process.env.PORT
-}
-
-
+module.exports = { serverport: port }
