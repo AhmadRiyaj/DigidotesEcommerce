@@ -1,0 +1,123 @@
+<%- include('./admin_head')%> <%- include('./admin_head')%>
+
+<div
+  id="main-wrapper"
+  data-layout="vertical"
+  data-navbarbg="skin5"
+  data-sidebartype="full"
+  data-sidebar-position="absolute"
+  data-header-position="absolute"
+  data-boxed-layout="full"
+>
+  <%- include('./top') %>
+  <div class="page-wrapper">
+    <!-- ============================================================== -->
+    <!-- Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <div class="page-breadcrumb">
+      <div class="row">
+        <div class="col-12 d-flex no-block align-items-center">
+          <h4 class="page-title" style="margin-right: 10px">Blog</h4>
+          <span class="add_button">
+            <a href="/admin_add_blog" class="btn btn-sm btn-primary">
+              Add Blog</a
+            ></span
+          >
+          <div class="ms-auto text-end">
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index.php">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Blog</li>
+              </ol>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container-fluid">
+      <!-- ============================================================== -->
+      <!-- Start Page Content -->
+      <!-- ============================================================== -->
+      <div class="row">
+        <% if (typeof message !== 'undefined' && message){%>
+        <p><%= message %></p>
+        <% } %>
+        <div class="col-12">
+          <div class="card">
+            <div class="card-body">
+              <h4 class="box-title">Add Blog</h4>
+              <!-- <h4 class="box-link"><a href="manage_banner.php">Add Banner</a> </h4> -->
+            </div>
+            <div class="card-body--">
+              <div class="table-stats order-table ov-h">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th class="serial">#</th>
+                      <th>Title</th>
+                      <th>Heading</th>
+
+                      <th>Created On</th>
+                      <th>Image</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <% for (var i = 0; i < all_blogs.length; i++) {%>
+                    <tr>
+                      <td><%= all_blogs[i].id+1%></td>
+                      <td><%= all_blogs[i].title%></td>
+                      <td><%= all_blogs[i].heading%></td>
+
+                      <td><%= all_blogs[i].createdAt%></td>
+                      <td>
+                        <img
+                          src="<%= all_blogs[i].image%>"
+                          alt=""
+                          height="50"
+                          width="70"
+                          srcset=""
+                        />
+                      </td>
+                      <td>
+                        <span class="badge1 badge-edit"
+                          ><a
+                            href="/admin_add_blog?blog_id=<%= all_blogs[i].id %>"
+                            >Edit</a
+                          ></span
+                        >&nbsp;
+                        <span class="badge1 badge-delete"
+                          ><a onclick="delete_blog('<%= all_blogs[i].id %>')"
+                            >Delete</a
+                          ></span
+                        >
+                      </td>
+                    </tr>
+                    <% } %>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  function delete_blog(blog_id) {
+    jQuery.ajax({
+      url: "/delete_blog",
+      method: "get",
+      dataType: "JSON",
+      data: {
+        blog_id: blog_id,
+      },
+      success: function (result) {
+        console.log(result.message);
+        window.location.reload();
+      },
+    });
+  }
+</script>

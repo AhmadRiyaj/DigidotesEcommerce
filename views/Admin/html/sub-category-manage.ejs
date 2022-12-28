@@ -1,0 +1,260 @@
+<%-  include('./admin_head')%>
+<div class="preloader">
+  <div class="lds-ripple">
+    <div class="lds-pos"></div>
+    <div class="lds-pos"></div>
+  </div>
+</div>
+
+<div id="main-wrapper" data-layout="vertical" data-navbarbg="skin5" data-sidebartype="full" data-sidebar-position="absolute" data-header-position="absolute" data-boxed-layout="full">
+ 
+
+
+  <%- include('./top') %>
+        <!-- ============================================================== -->
+        <!-- End Left Sidebar - style you can find in sidebar.scss  -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Page wrapper  -->
+        <!-- ============================================================== -->
+        <div class="page-wrapper">
+          <!-- ============================================================== -->
+          <!-- Bread crumb and right sidebar toggle -->
+          <!-- ============================================================== -->
+          <div class="page-breadcrumb">
+            <div class="row">
+              <div class="col-12 d-flex no-block align-items-center">
+                <h4 class="page-title">Sub-category Manage</h4>
+                <div class="ms-auto text-end">
+                  <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                      <li class="breadcrumb-item"><a href="products.html">Home</a></li>
+                      <li class="breadcrumb-item active" aria-current="page">
+                        Sub-category Manage
+                      </li>
+                    </ol>
+                  </nav>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- ============================================================== -->
+          <!-- End Bread crumb and right sidebar toggle -->
+          <!-- ============================================================== -->
+          <!-- ============================================================== -->
+          <!-- Container fluid  -->
+          <!-- ============================================================== -->
+          <div class="container-fluid">
+            <!-- ============================================================== -->
+            <!-- Start Page Content -->
+            <!-- ============================================================== -->
+            <div class="row">
+              <!-- Column -->
+              <div class=" col-md-8 m-auto  bg-white" >
+                <form class="p-4">
+                  <div class="form-group mt-4">
+                    <label for="categoryname">Enter Sub-category<span class="text-danger">*</span></label>
+                    <input type="text" class="form-control" id="categoryname">
+                  </div>
+                  <div class="form-row ">
+                    
+                    <div class="form-group col-6">
+                      <label for="category">category<span class="text-danger">*</span></label>
+                      <select class="form-control" id="category">
+                        <option selected>Choose...</option>
+                        <option>Refurbished</option>
+                        <option>New Laptop & Desktop</option>
+                        <option>Computer Accessories</option>
+                        <option>Open Box Gadgets</option>
+                        <option>Stationary</option>
+                        <option>Bookstore</option>
+                        <option>Dress & Uniform</option>
+                        <option>Printing Services</option>
+                        <option>Office Accessories</option>
+                        <option>Software</option>
+                      </select>
+                    </div>
+                    
+                    <div class="form-group col-6">
+                      <label for="location">Location<span class="text-danger">*</span></label>
+                      <select class="form-control" id="location">
+                        <option selected>Sub-root level</option>
+                        
+                      </select>
+                    </div>
+                    
+                  </div>
+                  <span><b>Status :</b></span>
+                    <div class="form-check-inline">
+                      <label class="form-check-label" for="radio1">
+                        <input type="radio" class="form-check-input m-1" id="radio1" name="optradio" value="option1" checked>Active
+                      </label>
+                    </div>
+                    <div class="form-check-inline">
+                      <label class="form-check-label" for="radio2">
+                        <input type="radio" class="form-check-input m-1" id="radio2" name="optradio" value="option2">Hidden
+                      </label>
+                    </div>
+                    <div class="form-check-inline">
+                      <label class="form-check-label" for="radio3">
+                        <input type="radio" class="form-check-input m-1" id="radio3" name="optradio">Disabled
+                      </label>
+                    </div>
+                    <div class="form-check-inline">
+                      <label class="form-check-label" for="radio4">
+                        <input type="radio" class="form-check-input m-1" id="radio4" name="optradio">Delete
+                      </label>
+                    </div>
+                    <div class="form-group mt-4">
+                      <label for="url">Enter Url<span class="text-danger">*</span></label>
+                      <input type="text" class="form-control" id=" url">
+                    </div>
+                </form>
+                <!-- editor -->
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">Sub-category Description</h4>
+                                <!-- Create the editor container -->
+                                <div id="editor" style="height: 300px">
+                                    
+                                    
+                                    <p>
+                                    <br />
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <a class="btn btn-primary mb-4" href="#">Submit</a>
+            </div>
+        </div>
+    </div>
+</div>
+            
+  
+            <!-- ============================================================== -->
+            <!-- End PAge Content -->
+            <!-- ============================================================== -->
+            <!-- ============================================================== -->
+            <!-- Right sidebar -->
+            <!-- ============================================================== -->
+            <!-- .right-sidebar -->
+            <!-- ============================================================== -->
+            <!-- End Right sidebar -->
+            <!-- ============================================================== -->
+          </div>      
+              
+              
+          
+          
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- footer -->
+        <!-- ============================================================== -->
+        <footer class="footer text-center">
+          
+        </footer>
+        <!-- ============================================================== -->
+        <!-- End footer -->
+        <!-- ============================================================== -->
+      </div>
+      <!-- ============================================================== -->
+      <!-- End Page wrapper  -->
+      <!-- ============================================================== -->
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Wrapper -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- All Jquery -->
+    <!-- ============================================================== -->
+    <script src="../assets/libs/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap tether Core JavaScript -->
+    <script src="../assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- slimscrollbar scrollbar JavaScript -->
+    <script src="../assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js"></script>
+    <script src="../assets/extra-libs/sparkline/sparkline.js"></script>
+    <!--Wave Effects -->
+    <script src="../dist/js/waves.js"></script>
+    <!--Menu sidebar -->
+    <script src="../dist/js/sidebarmenu.js"></script>
+    <!--Custom JavaScript -->
+    <script src="../dist/js/custom.min.js"></script>
+    <script src="../dist/js/manage-js.js"></script>
+
+    <!-- This Page JS -->
+    <script src="../assets/libs/inputmask/dist/min/jquery.inputmask.bundle.min.js"></script>
+    <script src="../dist/js/pages/mask/mask.init.js"></script>
+    <script src="../assets/libs/select2/dist/js/select2.full.min.js"></script>
+    <script src="../assets/libs/select2/dist/js/select2.min.js"></script>
+    <script src="../assets/libs/jquery-asColor/dist/jquery-asColor.min.js"></script>
+    <script src="../assets/libs/jquery-asGradient/dist/jquery-asGradient.js"></script>
+    <script src="../assets/libs/jquery-asColorPicker/dist/jquery-asColorPicker.min.js"></script>
+    <script src="../assets/libs/jquery-minicolors/jquery.minicolors.min.js"></script>
+    <script src="../assets/libs/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+    <script src="../assets/libs/quill/dist/quill.min.js"></script>
+    <script>
+      //***********************************//
+      // For select 2
+      //***********************************//
+      $(".select2").select2();
+
+      /*colorpicker*/
+      $(".demo").each(function () {
+        //
+        // Dear reader, it's actually very easy to initialize MiniColors. For example:
+        //
+        //  $(selector).minicolors();
+        //
+        // The way I've done it below is just for the demo, so don't get confused
+        // by it. Also, data- attributes aren't supported at this time...they're
+        // only used for this demo.
+        //
+        $(this).minicolors({
+          control: $(this).attr("data-control") || "hue",
+          position: $(this).attr("data-position") || "bottom left",
+
+          change: function (value, opacity) {
+            if (!value) return;
+            if (opacity) value += ", " + opacity;
+            if (typeof console === "object") {
+              console.log(value);
+            }
+          },
+          theme: "bootstrap",
+        });
+      });
+      /*datwpicker*/
+      jQuery(".mydatepicker").datepicker();
+      jQuery("#datepicker-autoclose").datepicker({
+        autoclose: true,
+        todayHighlight: true,
+      });
+      var quill = new Quill("#editor", {
+        theme: "snow",
+      });
+    </script>
+    <script>
+
+        $(document).ready(function () {
+    
+        $("#file-upload-demo").fileinput({
+            'theme': 'explorer',
+            'uploadUrl': '#',
+            overwriteInitial: false,
+            initialPreviewAsData: true,
+            initialPreview: [
+                
+            ],
+            initialPreviewConfig: [
+                
+            ]
+        });
+    
+    });
+    </script>
+  </body>
+</html>

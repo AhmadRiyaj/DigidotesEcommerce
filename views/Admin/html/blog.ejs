@@ -1,0 +1,321 @@
+<%- include('./admin_head')%>
+<div
+  id="main-wrapper"
+  data-layout="vertical"
+  data-navbarbg="skin5"
+  data-sidebartype="full"
+  data-sidebar-position="absolute"
+  data-header-position="absolute"
+  data-boxed-layout="full"
+>
+  <%- include('./top') %>
+  <div class="page-wrapper">
+    <!-- ============================================================== -->
+    <!-- Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <div class="page-breadcrumb">
+      <div class="row">
+        <div class="col-12 d-flex no-block align-items-center">
+          <h4 class="page-title">Blog</h4>
+          <div class="ms-auto text-end">
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index.php">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Blog</li>
+              </ol>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container-fluid">
+      <!-- ============================================================== -->
+      <!-- Start Page Content -->
+      <!-- ============================================================== -->
+      <div class="row">
+        <!-- Column -->
+        <div class="col-md-8 m-auto bg-white">
+          <div class="card">
+            <div class="card-header">
+              <strong>Blog</strong><small> Form</small>
+            </div>
+            <% if(typeof message!== 'undefined' && message){%> <%= message %><%
+            } %> <% if(typeof result !== 'undefined' && result ){%>
+            <form
+              method="post"
+              action="/update_blog_changes"
+              enctype="multipart/form-data"
+            >
+              <div class="card-body card-block">
+                <div class="form-group">
+                  <label for="Title" class="form-control-label">Title</label>
+                  <input
+                    type="text"
+                    name="title"
+                    value="<%= result.title%>"
+                    placeholder="Enter Title"
+                    class="form-control"
+                    required
+                  />
+                </div>
+                <input
+                  type="hidden"
+                  name="blog_id"
+                  value="<%= result.id%>"
+                  id=""
+                />
+                <div class="form-group">
+                  <label for="link" class="form-control-label">Heading</label>
+                  <input
+                    type="text"
+                    name="heading"
+                    value="<%= result.heading%>"
+                    placeholder="Enter Heading"
+                    class="form-control"
+                    required
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="link" class="form-control-label"
+                    >Image Alt Tag</label
+                  >
+                  <input
+                    type="text"
+                    name="image_alt_tag"
+                    value="<%= result.image_alt_tag%>"
+                    placeholder="Enter Heading"
+                    class="form-control"
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label for="heading1" class="form-control-label">Image</label>
+                  <img
+                    src="<%= result.image %>"
+                    height="50"
+                    width="50"
+                    alt=""
+                    srcset=""
+                  />
+                  <input
+                    type="file"
+                    name="image"
+                    placeholder="Enter image"
+                    value="<%= result.image %>"
+                    class="form-control"
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label for="meta_title" class="form-control-label">
+                    Hash tag</label
+                  >
+                  <input
+                    type="text"
+                    name="hash_tag"
+                    value="<%= result.hash_tag%>"
+                    placeholder="Meta Title"
+                    class="form-control"
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="meta_title" class="form-control-label">
+                    Meta Title</label
+                  >
+                  <input
+                    type="text"
+                    name="meta_title"
+                    placeholder="Meta Title"
+                    value="<%= result.meta_title%>"
+                    class="form-control"
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="meta_title" class="form-control-label">
+                    Meta Keyword</label
+                  >
+                  <input
+                    type="text"
+                    name="meta_keyword"
+                    placeholder="Meta Keyword"
+                    value="<%= result.meta_keyword%>"
+                    class="form-control"
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label for="meta_description" class="form-control-label"
+                    >Meta Description</label
+                  >
+                  <textarea
+                    rows="2"
+                    class="form-control"
+                    name="meta_description"
+                    placeholder="Meta Description"
+                  >
+                 <%= result.meta_description%>
+                </textarea
+                  >
+                </div>
+
+                <div class="form-group">
+                  <label for="description" class="form-control-label">
+                    Description</label
+                  >
+                  <textarea
+                    class="form-control"
+                    name="description"
+                    id="editor1"
+                    rows="10"
+                    cols="80"
+                    placeholder=" Description"
+                    required
+                  >
+                <%= result.description%>
+                
+                </textarea
+                  >
+                </div>
+                <button
+                  id="payment-button"
+                  name="submit"
+                  type="submit"
+                  class="btn btn-lg btn-info btn-block"
+                >
+                  <span id="payment-button-amount">Submit</span>
+                </button>
+                <div class="field_error"></div>
+              </div>
+            </form>
+            <% }else { %>
+            <form
+              method="post"
+              action="/insert_new_blog"
+              enctype="multipart/form-data"
+            >
+              <div class="card-body card-block">
+                <div class="form-group">
+                  <label for="Title" class="form-control-label">Title</label>
+                  <input
+                    type="text"
+                    name="title"
+                    placeholder="Enter Title"
+                    class="form-control"
+                    required
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="link" class="form-control-label">Heading</label>
+                  <input
+                    type="text"
+                    name="heading"
+                    placeholder="Enter Heading"
+                    class="form-control"
+                    required
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="link" class="form-control-label"
+                    >Image Alt Tag</label
+                  >
+                  <input
+                    type="text"
+                    name="image_alt_tag"
+                    placeholder="Enter Heading"
+                    class="form-control"
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label for="heading1" class="form-control-label">Image</label>
+                  <input
+                    type="file"
+                    name="image"
+                    placeholder="Enter image"
+                    class="form-control"
+                    required
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label for="meta_title" class="form-control-label">
+                    Hash tag</label
+                  >
+                  <input
+                    type="text"
+                    name="hash_tag"
+                    placeholder="Meta Title"
+                    class="form-control"
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="meta_title" class="form-control-label">
+                    Meta Title</label
+                  >
+                  <input
+                    type="text"
+                    name="meta_title"
+                    placeholder="Meta Title"
+                    class="form-control"
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="meta_title" class="form-control-label">
+                    Meta Keyword</label
+                  >
+                  <input
+                    type="text"
+                    name="meta_keyword"
+                    placeholder="Meta Keyword"
+                    class="form-control"
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label for="meta_description" class="form-control-label"
+                    >Meta Description</label
+                  >
+                  <textarea
+                    rows="2"
+                    class="form-control"
+                    name="meta_description"
+                    placeholder="Meta Description"
+                  ></textarea>
+                </div>
+
+                <div class="form-group">
+                  <label for="description" class="form-control-label">
+                    Description</label
+                  >
+                  <textarea
+                    class="form-control"
+                    name="description"
+                    id="editor1"
+                    rows="10"
+                    cols="80"
+                    placeholder=" Description"
+                    required
+                  ></textarea>
+                </div>
+                <button
+                  id="payment-button"
+                  name="submit"
+                  type="submit"
+                  class="btn btn-lg btn-info btn-block"
+                >
+                  <span id="payment-button-amount">Submit</span>
+                </button>
+                <div class="field_error"></div>
+              </div>
+            </form>
+            <% } %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="../ckeditor/ckeditor.js"></script>
+<script>
+  CKEDITOR.replace("editor1");
+</script>

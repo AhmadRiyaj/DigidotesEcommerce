@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "geetleather_root",
+    "password": "12345678",
+    "database": "ecommerce",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  "test": {
+    "username": "geetleather_root",
+    "password": "12345678",
+    "database": "ecommerce",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  "production": {
+    "username": "geetleather_root",
+    "password": "12345678",
+    "database": "ecommerce",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  }
+}

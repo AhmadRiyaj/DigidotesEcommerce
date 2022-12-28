@@ -1,0 +1,79 @@
+<%-  include('./admin_head')%>
+<!-- <div class="preloader">
+  <div class="lds-ripple">
+    <div class="lds-pos"></div>
+    <div class="lds-pos"></div>
+  </div>
+</div> -->
+
+<div id="main-wrapper" data-layout="vertical" data-navbarbg="skin5" data-sidebartype="full" data-sidebar-position="absolute" data-header-position="absolute" data-boxed-layout="full">
+ 
+  <%- include('./top') %>
+
+
+  <div class="page-wrapper">
+
+	<div class="page-breadcrumb">
+		<div class="row">
+			<div class="col-12 d-flex no-block align-items-center">
+				<h4 class="page-title">Add Banner</h4>
+				<div class="ms-auto text-end">
+					<nav aria-label="breadcrumb">
+						<ol class="breadcrumb">
+							<li class="breadcrumb-item"><a href="index">Home</a></li>
+							<li class="breadcrumb-item active" aria-current="page">
+								Add Banner
+							</li>
+						</ol>
+					</nav>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="container-fluid">
+		
+		<div class="row">
+			<!-- Column -->
+			<div class=" col-md-8 m-auto  bg-white">
+				<div class="card">
+					<div class="card-header"><strong>Banner</strong><small> Form</small></div>
+					<form method="post" enctype="multipart/form-data">
+						<div class="card-body card-block">
+							<div class="form-group">
+								<label for="heading1" class=" form-control-label">Heading1</label>
+								<input type="text" name="heading1" placeholder="Enter heading1" class="form-control">
+							</div>
+							<div class="form-group">
+								<label for="heading1" class=" form-control-label">Heading2</label>
+								<input type="text" name="heading2" placeholder="Enter heading2" class="form-control">
+							</div>
+							<div class="form-group">
+								<label for="heading1" class=" form-control-label">Btn Txt</label>
+								<input type="text" name="btn_txt" placeholder="Enter btn txt" class="form-control">
+							</div>
+							<div class="form-group">
+								<label for="heading1" class=" form-control-label">Btn Link</label>
+								<input type="text" name="btn_link" placeholder="Enter btn link" class="form-control">
+							</div>
+							<div class="form-group">
+								<label for="heading1" class=" form-control-label">Image</label>
+								<input type="file" name="image" placeholder="Enter image" class="form-control">
+
+							</div>
+							<div class="form-group">
+								<label for="heading1" class=" form-control-label">Order No</label>
+								<input type="text" name="order_no" placeholder="Enter order no" class="form-control">
+							</div>
+							<button id="payment-button" name="submit" type="submit" class="btn btn-lg btn-info btn-block">
+								<span id="payment-button-amount">Submit</span>
+							</button>
+							<div class="field_error">div>
+							</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+</div>

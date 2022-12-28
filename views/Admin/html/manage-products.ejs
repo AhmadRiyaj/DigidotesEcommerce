@@ -1,0 +1,390 @@
+<%-  include('./admin_head')%>
+
+<div class="preloader">
+	<div class="lds-ripple">
+	  <div class="lds-pos"></div>
+	  <div class="lds-pos"></div>
+	</div>
+  </div>
+  
+  <div id="main-wrapper" data-layout="vertical" data-navbarbg="skin5" data-sidebartype="full" data-sidebar-position="absolute" data-header-position="absolute" data-boxed-layout="full"> 
+	<%- include('./top') %>
+
+	<div class="page-wrapper">
+		<div class="page-breadcrumb">
+			<div class="row">
+				<div class="col-12 d-flex no-block align-items-center">
+					<h4 class="page-title">Products Add</h4>
+					<div class="ms-auto text-end">
+						<nav aria-label="breadcrumb">
+							<ol class="breadcrumb">
+								<li class="breadcrumb-item"><a href="/">Home</a></li>
+								<li class="breadcrumb-item active" aria-current="page">
+									Product Add
+								</li>
+							</ol>
+						</nav>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="container-fluid">
+			<div class="row">
+				<div class=" col-md-8 m-auto  bg-white">
+					<div class="card">
+
+						<% if ( typeof result!==undefined && result && result){ %>
+							<form method="post" action="/update_product" enctype="multipart/form-data">
+								<div class="card-body card-block">
+									<div class="drop-box bg-white ">
+										<i class="fa fa-cloud-upload" aria-hidden="true"></i>
+										<div class=" kv-main">
+											<div class="page-header">
+												<h2>Add Product
+												</h2>
+											</div>	
+											<div class="form-group">
+												<label for="categories" class=" form-control-label">Product Name</label>
+												<input type="hidden" name="product_id" placeholder="Enter product name" class="form-control"  value="<%= result.id %> ">
+												<input type="text" name="product_name" placeholder="Enter product name" class="form-control"  value="<%= result.product_name %> ">
+											</div>
+											<div class="form-group">
+												<label for="categories" class=" form-control-label">Product Title</label>
+												<input type="text" name="product_title" value="<%= result.product_title %>"  placeholder="Enter product Title" class="form-control"  value=" ">
+											</div>
+											<div class="form-group">
+												<label for="categories" class=" form-control-label">Product Additional Information</label>
+												<input type="text" name="product_additional_information" value="<%= result.product_additional_information %>"  placeholder="Enter product Additional Information" class="form-control"  value=" ">
+											</div>
+											<div class="form-group">
+												<div class="row" id="image_box">
+													<div class="col-lg-10">
+									
+														<% for(let i=0; i< image.length; i++) {  %>
+																<label for="categories" class=" form-control-label">Image</label>
+																<img src="<%=  image[i].filename  %>" alt="" srcset="" width="60" height="60">
+																<input type="file" name="product_images" value="<%=  image[i].filename  %>"   multiple class="form-control">
+														<%  } %>
+														
+													</div>
+													<div class="col-lg-2">
+														<label for="categories" class=" form-control-label"></label>
+														<button id="" type="button" class="btn btn-sm btn-info btn-block mt-2" onclick="add_more_images()">
+															<span id="payment-button-amount">Add Image</span>
+														</button>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="form-group">
+										<div class="row">
+											<div class="col-sm-4">
+												<label for="categories" class=" form-control-label">Categories</label>
+												<select class="form-control" name="product_category_id" value="<%= result.product_category_id %>"  id="category_id" onchange="get_sub_cat()" >
+													<option disabled selected>Select Category</option>
+													<% for(var j=0 ; j< category.length ; j++) { %>
+														<option value="<%= category[j].id %>"><%= category[j].category %></option>
+													<% } %>	 
+												</select>
+											</div>
+											<div class="col-sm-4">
+												<label for="categories" class=" form-control-label">Sub Categories</label>
+												<select class="form-control" name="product_sub_category_id" value="<%= result.product_sub_category_id %>"  id="product_sub_category_id">
+													</select>
+											</div>
+										</div>
+									</div>
+									<div class="form-group" id="product_attr_box">
+										<div class="row" id="attr_">
+											<div class="col-sm-4">
+												<label for="categories" class=" form-control-label">Price</label>
+												<input type="text" name="product_price" value="<%= result.product_price %>"  placeholder=" Price" class="form-control" >
+											</div>
+											<div class="col-sm-4">
+												<label for="categories" class=" form-control-label">Qty</label>
+												<input type="text" name="product_quantity" value="<%= result.product_quantity %>"  placeholder=" Qty" class="form-control" >
+											</div>
+										</div>
+									</div>
+									
+									<div class="form-group">
+										<label for="categories" class=" form-control-label">Meta Title</label>
+										<textarea name="meta_title"  placeholder="Enter product meta title" class="form-control"><%= result.meta_title %></textarea>
+									</div>
+									<div class="form-group">
+										<label for="categories" class=" form-control-label">Hash Tags</label>
+										<textarea name="hash_tags"  placeholder="Enter product hash Tags" class="form-control"><%= result.hash_tags %></textarea>
+									</div>
+									<div class="form-group">
+										<label for="categories" class=" form-control-label">Meta Description</label>
+										<textarea name="meta_description"   placeholder="Enter product meta description" class="form-control"><%= result.meta_description %></textarea>
+									</div>
+	
+									<div class="form-group">
+										<label for="categories" class=" form-control-label">Meta Keyword</label>
+										<textarea name="meta_keywords"  placeholder="Enter product meta keyword" class="form-control"><%= result.meta_keywords %> </textarea>
+									</div>
+									
+									<div class="form-group">
+										<label for="categories" class=" form-control-label"> Description</label>
+										<textarea name="product_description"   id="editor1" placeholder="Enter product meta description" class="form-control"><%= result.product_description %></textarea>
+									</div>
+								
+	
+									<button id="payment-button" name="submit" type="submit" class="btn btn-lg btn-info btn-block">
+										<span id="payment-button-amount">Submit</span>
+									</button>
+									<div class="field_error"></div>
+								</div>
+							</form>
+	
+						<% } else { %>
+							<form method="post" action="/CreateProducts" enctype="multipart/form-data">
+								<div class="card-body card-block">
+									<div class="drop-box bg-white ">
+										<i class="fa fa-cloud-upload" aria-hidden="true"></i>
+										<div class=" kv-main">
+											<div class="page-header">
+												<h2>Add Product
+												</h2>
+											</div>
+											
+	
+											<div class="form-group">
+												<label for="categories" class=" form-control-label">Product Name</label>
+												<input type="text" name="product_name" placeholder="Enter product name" class="form-control"  value=" ">
+											</div>
+											<div class="form-group">
+												<label for="categories" class=" form-control-label">Product Title</label>
+												<input type="text" name="product_title" placeholder="Enter product Title" class="form-control"  value=" ">
+											</div>
+											<div class="form-group">
+												<label for="categories" class=" form-control-label">Product Additional Information</label>
+												<input type="text" name="product_additional_information" placeholder="Enter product Additional Information" class="form-control"  value=" ">
+											</div>
+											<div class="form-group">
+												<div class="row" id="image_box">
+													<div class="col-lg-10">
+														<label for="categories" class=" form-control-label">Image</label>
+														<input type="file" name="product_images" multiple class="form-control">
+													</div>
+													<div class="col-lg-2">
+														<label for="categories" class=" form-control-label"></label>
+														<button id="" type="button" class="btn btn-sm btn-info btn-block mt-2" onclick="add_more_images()">
+															<span id="payment-button-amount">Add Image</span>
+														</button>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="form-group">
+										<div class="row">
+											<div class="col-sm-4">
+												<label for="categories" class=" form-control-label">Categories</label>
+												<select class="form-control" name="product_category_id" id="category_id" onchange="get_sub_cat()" >
+													<option disabled selected>Select Category</option>
+													  <% for(var i=0; i< category.length; i++){ %>
+														<option value="<%= category[i].id%>"><%= category[i].category %></option>
+													  <% } %>
+												</select>
+											</div>
+											<div class="col-sm-4">
+												<label for="categories" class=" form-control-label">Sub Categories</label>
+												<select class="form-control" name="product_sub_category_id" id="product_sub_category_id">
+													
+												</select>
+											</div>
+										</div>
+									</div>
+									<div class="form-group" id="product_attr_box">
+										<div class="row" id="attr_">
+											<div class="col-sm-4">
+												<label for="categories" class=" form-control-label">Price</label>
+												<input type="text" name="product_price" placeholder=" Price" class="form-control" >
+											</div>
+											<div class="col-sm-4">
+												<label for="categories" class=" form-control-label">Qty</label>
+												<input type="text" name="product_quantity" placeholder=" Qty" class="form-control" >
+											</div>
+										</div>
+									</div>
+									
+									<div class="form-group">
+										<label for="categories" class=" form-control-label">Meta Title</label>
+										<textarea name="meta_title" placeholder="Enter product meta title" class="form-control"></textarea>
+									</div>
+									<div class="form-group">
+										<label for="categories" class=" form-control-label">Hash Tags</label>
+										<textarea name="hash_tags" placeholder="Enter product hash Tags" class="form-control"></textarea>
+									</div>
+									<div class="form-group">
+										<label for="categories" class=" form-control-label">Meta Description</label>
+										<textarea name="meta_description" placeholder="Enter product meta description" class="form-control"></textarea>
+									</div>
+	
+									<div class="form-group">
+										<label for="categories" class=" form-control-label">Meta Keyword</label>
+										<textarea name="meta_keywords" placeholder="Enter product meta keyword" class="form-control"> </textarea>
+									</div>
+									
+									<div class="form-group">
+										<label for="categories" class=" form-control-label"> Description</label>
+										<textarea name="product_description" id="editor1" placeholder="Enter product meta description" class="form-control"></textarea>
+									</div>
+								
+	
+									<button id="payment-button" name="submit" type="submit" class="btn btn-lg btn-info btn-block">
+										<span id="payment-button-amount">Submit</span>
+									</button>
+									<div class="field_error"></div>
+								</div>
+							</form>
+	
+						<%  } %>
+						
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+  </div>
+<script src="../assets/libs/jquery/dist/jquery.min.js"></script>
+<!-- Bootstrap tether Core JavaScript -->
+<script src="../assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<!-- slimscrollbar scrollbar JavaScript -->
+<script src="../assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js"></script>
+<script src="../assets/extra-libs/sparkline/sparkline.js"></script>
+<!--Wave Effects -->
+<script src="../dist/js/waves.js"></script>
+<!--Menu sidebar -->
+<script src="../dist/js/sidebarmenu.js"></script>
+<!--Custom JavaScript -->
+<script src="../dist/js/custom.min.js"></script>
+<script src="../dist/js/manage-js.js"></script>
+
+<!-- This Page JS -->
+<script src="../assets/libs/inputmask/dist/min/jquery.inputmask.bundle.min.js"></script>
+<script src="../dist/js/pages/mask/mask.init.js"></script>
+<script src="../assets/libs/select2/dist/js/select2.full.min.js"></script>
+<script src="../assets/libs/select2/dist/js/select2.min.js"></script>
+<script src="../assets/libs/jquery-asColor/dist/jquery-asColor.min.js"></script>
+<script src="../assets/libs/jquery-asGradient/dist/jquery-asGradient.js"></script>
+<script src="../assets/libs/jquery-asColorPicker/dist/jquery-asColorPicker.min.js"></script>
+<script src="../assets/libs/jquery-minicolors/jquery.minicolors.min.js"></script>
+<script src="../assets/libs/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+<script src="../assets/libs/quill/dist/quill.min.js"></script>
+<script src="../ckeditor/ckeditor.js"></script>
+<script>
+		$(".select2").select2();
+$(".demo").each(function() {
+		$(this).minicolors({
+			control: $(this).attr("data-control") || "hue",
+			position: $(this).attr("data-position") || "bottom left",
+
+			change: function(value, opacity) {
+				if (!value) return;
+				if (opacity) value += ", " + opacity;
+				if (typeof console === "object") {
+					console.log(value);
+				}
+			},
+			theme: "bootstrap",
+		});
+	});
+	/*datwpicker*/
+	jQuery(".mydatepicker").datepicker();
+	jQuery("#datepicker-autoclose").datepicker({
+		autoclose: true,
+		todayHighlight: true,
+	});
+	var quill = new Quill("#editor", {
+		theme: "snow",
+	});
+</script>
+<script>
+	$(document).ready(function() {
+
+		$("#file-upload-demo").fileinput({
+			'theme': 'explorer',
+			'uploadUrl': '#',
+			overwriteInitial: false,
+			initialPreviewAsData: true,
+			initialPreview: [
+
+			],
+			initialPreviewConfig: [
+			]
+		});
+
+	});
+	var total_image = 1;
+
+	function add_more_images() {
+		total_image++;
+		var html = '<div class="col-lg-6" style="margin-top:20px;" id="add_image_box_' + total_image + '"><label for="categories" class=" form-control-label">Image</label><input type="file" name="product_images" class="form-control" ><button type="button" class="btn btn-sm btn-danger btn-block mt-2" onclick=remove_image("' + total_image + '")><span id="payment-button-amount">Remove</span></button></div>';
+		jQuery('#image_box').append(html);
+	}
+
+	function remove_image(id) {
+		jQuery('#add_image_box_' + id).remove();
+	}
+
+	var attr_count = 1;
+
+	function add_more_attr() {
+		attr_count++;
+
+		var size_html = jQuery('#attr_1 #size_id').html();
+		size_html = size_html.replace('selected', '');
+
+		var color_html = jQuery('#attr_1 #color_id').html();
+		color_html = color_html.replace('selected', '');
+
+
+		var html = '<div class="row mt20" id="attr_' + attr_count + '"> <div class="col-lg-2"><label for="categories" class=" form-control-label">MRP</label><input type="text" name="mrp[]" placeholder="MRP" class="form-control" ="" value=""> </div> <div class="col-lg-2"><label for="categories" class=" form-control-label">Price</label><input type="text" name="price[]" placeholder="Price" class="form-control" ="" value=""> </div> <div class="col-lg-2"><label for="categories" class=" form-control-label">Qty</label><input type="text" name="qty[]" placeholder="Qty" class="form-control" ="" value=""> </div> <div class="col-lg-2"><label for="categories" class=" form-control-label">Size</label><select class="form-control" id="size_id" name="size_id[]">' + size_html + '</select> </div> <div class="col-lg-2"><label for="categories" class=" form-control-label">Color</label><select class="form-control" id="color_id" name="color_id[]">' + color_html + '</select> </div> <div class="col-lg-2"><label for="categories" class=" form-control-label">&nbsp;</label><button id="" type="button" class="btn btn-sm btn-danger btn-block mt-2" onclick=remove_attr("' + attr_count + '")><span id="payment-button-amount">Remove</span></button> </div><input type="hidden" name="attr_id[]" value=""/></div>';
+		jQuery('#product_attr_box').append(html);
+	}
+
+	function remove_attr(attr_count, id) {
+		jQuery.ajax({
+			url: 'remove_product_attr',
+			data: 'id=' + id,
+			type: 'post',
+			success: function(result) {
+				jQuery('#attr_' + attr_count).remove();
+			}
+		});
+	}
+</script>
+<script>
+	function get_sub_cat() {
+		var category_id = jQuery('#category_id').val();
+		console.log(category_id);
+		jQuery.ajax({
+			url: '/get_sub_category',
+			type: 'post',
+			dataType:'json',
+			data: {category_id:category_id} ,
+			success: function(result) {
+				console.log("length is "+result.data.length);
+				var all_sub_category="<option selected disabled>--Select Sub category--</option>"
+				for (let index = 0; index < result.data.length; index++) {
+                    all_sub_category+="<option value="+result.data[index].id+" >"+result.data[index].sub_category+"</option>";
+				}
+				console.log(all_sub_category);
+				jQuery('#product_sub_category_id').html(all_sub_category);
+			}
+		});
+	}
+</script>
+<script>
+	
+</script>
+<script>
+	CKEDITOR.replace('editor1');
+</script>
+</body>
+
+</html>

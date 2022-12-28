@@ -1,0 +1,139 @@
+<%-  include('./admin_head')%>
+<div class="preloader">
+  <div class="lds-ripple">
+    <div class="lds-pos"></div>
+    <div class="lds-pos"></div>
+  </div>
+</div>
+
+<div id="main-wrapper" data-layout="vertical" data-navbarbg="skin5" data-sidebartype="full" data-sidebar-position="absolute" data-header-position="absolute" data-boxed-layout="full">
+ 
+
+
+  <%- include('./top') %>   <!-- ============================================================== -->
+      <!-- End Left Sidebar - style you can find in sidebar.scss  -->
+      <!-- ============================================================== -->
+      <!-- ============================================================== -->
+      <!-- Page wrapper  -->
+      <!-- ============================================================== -->
+      <div class="page-wrapper">
+        <!-- ============================================================== -->
+        <!-- Bread crumb and right sidebar toggle -->
+        <!-- ============================================================== -->
+        <div class="page-breadcrumb">
+          <div class="row">
+            <div class="col-12 d-flex no-block align-items-center">
+              <h4 class="page-title" style="margin-right:10px;">Sub Categories </h4> 
+              <span class=" add_button" > <a href="/admin_add_subcategory" class="btn btn-sm btn-primary"> Add Sub-Category</a></span>
+              <div class="ms-auto text-end">
+                <nav aria-label="breadcrumb">
+                  <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="index">Home</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">
+                      Sub Categories
+                    </li>
+                  </ol>
+                </nav>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- End Bread crumb and right sidebar toggle -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Container fluid  -->
+        <!-- ============================================================== -->
+        <div class="container-fluid">
+          <!-- ============================================================== -->
+          <!-- Start Page Content -->
+          <!-- ============================================================== -->
+          <div class="row">
+            <div class="col-12">
+              <div class="card">
+                <% if (typeof message!== 'undefined' && message){%>
+                      <p><%= message %></p>
+                <% } %>
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <!-- <th scope="col">#</th> -->
+                      <th scope="col">ID</th>
+                      <th scope="col">Categories</th>
+                      <th scope="col">Sub Categories</th>
+                      <th scope="col">Description</th>
+                    </tr>
+                  </thead>
+                <tbody>
+                  <% for(var i=0;i< result.length;i++){%>
+                      <tr>
+                        <td><%= result[i].id+1 %></td>
+                        <td><%= result[i].category %></td>
+                        <td><%= result[i].sub_category %></td>
+                        <td><%= result[i].description %></td>
+                        <td>
+                          <span class="badge1 badge-edit"
+                            ><a
+                              href="/admin_add_subcategory?sub_category_id=<%= result[i].id %>"
+                              >Edit</a
+                            ></span
+                          >&nbsp;
+                          <span class="badge1 badge-delete"
+                            ><a
+                              onclick="delete_subcategory('<%= result[i].id %>')"
+                              >Delete</a
+                            ></span
+                          >
+                        </td>
+                      </tr>
+                    <% } %>
+                </tbody>
+                </table>
+              </div>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+   <script src="../assets/libs/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap tether Core JavaScript -->
+    <script src="../assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- slimscrollbar scrollbar JavaScript -->
+    <script src="../assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js"></script>
+    <script src="../assets/extra-libs/sparkline/sparkline.js"></script>
+    <!--Wave Effects -->
+    <script src="../dist/js/waves.js"></script>
+    <!--Menu sidebar -->
+    <script src="../dist/js/sidebarmenu.js"></script>
+    <!--Custom JavaScript -->
+    <script src="../dist/js/custom.min.js"></script>
+    <!-- this page js -->
+    <script src="../assets/extra-libs/multicheck/datatable-checkbox-init.js"></script>
+    <script src="../assets/extra-libs/multicheck/jquery.multicheck.js"></script>
+    <script src="../assets/extra-libs/DataTables/datatables.min.js"></script>
+    <script>
+      /****************************************
+       *       Basic Table                   *
+       ****************************************/
+      $("#zero_config").DataTable();
+    </script>
+    <script>
+      function delete_subcategory(sub_category_id) {
+        jQuery.ajax({
+          url: "/delete_subcategory",
+          method: "get",
+          dataType: "JSON",
+          data: {
+            sub_category_id: sub_category_id,
+          },
+          success: function (result) {
+            console.log(result.message);
+            window.location.reload();
+          },
+        });
+      }
+    </script>
+    
+  </body>
+</html>

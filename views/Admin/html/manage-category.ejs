@@ -1,0 +1,235 @@
+<%-  include('./admin_head')%>
+
+<div class="preloader">
+  <div class="lds-ripple">
+    <div class="lds-pos"></div>
+    <div class="lds-pos"></div>
+  </div>
+</div>
+
+<div id="main-wrapper" data-layout="vertical" data-navbarbg="skin5" data-sidebartype="full" data-sidebar-position="absolute" data-header-position="absolute" data-boxed-layout="full">
+ 
+
+
+  <%- include('./top') %>
+<div class="page-wrapper">
+  <!-- ============================================================== -->
+  <!-- Bread crumb and right sidebar toggle -->
+  <!-- ============================================================== -->
+  <div class="page-breadcrumb">
+    <div class="row">
+      <div class="col-12 d-flex no-block align-items-center">
+        <h4 class="page-title">Category Manage</h4>
+        <div class="ms-auto text-end">
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="/admin_dashboard">Home</a></li>
+              <li class="breadcrumb-item active" aria-current="page">
+                Category Manage
+              </li>
+            </ol>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ============================================================== -->
+  <!-- End Bread crumb and right sidebar toggle -->
+  <!-- ============================================================== -->
+  <!-- ============================================================== -->
+  <!-- Container fluid  -->
+  <!-- ============================================================== -->
+  <div class="container-fluid">
+    <!-- ============================================================== -->
+    <!-- Start Page Content -->
+    <!-- ============================================================== -->
+    <div class="row">
+      <!-- Column -->
+      <div class=" col-md-8 m-auto  bg-white">
+
+        <% if (typeof result!== 'undefined' && result) {%>
+          <form class="p-4" action="/update_category" method="post">
+            <div class="form-group mt-4">
+              <input type="hidden" name="category_id" value="<%=  result.id%>" id="">
+              <label for="categoryname">Enter Category<span class="text-danger">*</span></label>
+              <input type="text" name="category" value="<%=  result.category%>" class="form-control" id="categoryname" >
+            </div>
+  
+            <div class="form-group mt-4">
+              <label for="categoryname">Description </label>
+              <input type="text" name="description" value="<%= result.description %>" class="form-control" id="description" >
+            </div>
+           
+            <button id="payment-button" type="submit" class="btn btn-primary btn-block">
+              <span id="payment-button-amount">Submit</span>
+            </button>
+            <div class="text-danger"></div>
+  
+          </form>
+        <% }else{%> 
+          <form class="p-4" action="/insert_new_category" method="post">
+            <div class="form-group mt-4">
+              <label for="categoryname">Enter Category<span class="text-danger">*</span></label>
+              <input type="text" name="category" class="form-control" id="categoryname" >
+            </div>
+  
+            <div class="form-group mt-4">
+              <label for="categoryname">Description </label>
+              <input type="text" name="description" class="form-control" id="description" >
+            </div>
+           
+            <button id="payment-button" type="submit" class="btn btn-primary btn-block">
+              <span id="payment-button-amount">Submit</span>
+            </button>
+            <div class="text-danger"></div>
+  
+          </form>
+        <% }%> 
+
+       
+        <!-- editor -->
+        <!-- <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">Product Description<span class="text-danger">*</span></h4>
+                                <div id="editor" style="height: 300px">
+                                    
+                                    
+                                    <p>
+                                    <br />
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ============================================================== -->
+<!-- End PAge Content -->
+<!-- ============================================================== -->
+<!-- ============================================================== -->
+<!-- Right sidebar -->
+<!-- ============================================================== -->
+<!-- .right-sidebar -->
+<!-- ============================================================== -->
+<!-- End Right sidebar -->
+<!-- ============================================================== -->
+</div>
+
+
+
+
+<!-- ============================================================== -->
+<!-- ============================================================== -->
+<!-- footer -->
+<!-- ============================================================== -->
+<footer class="footer text-center">
+
+</footer>
+<!-- ============================================================== -->
+<!-- End footer -->
+<!-- ============================================================== -->
+</div>
+<!-- ============================================================== -->
+<!-- End Page wrapper  -->
+<!-- ============================================================== -->
+</div>
+<!-- ============================================================== -->
+<!-- End Wrapper -->
+<!-- ============================================================== -->
+<!-- ============================================================== -->
+<!-- All Jquery -->
+<!-- ============================================================== -->
+<script src="../assets/libs/jquery/dist/jquery.min.js"></script>
+<!-- Bootstrap tether Core JavaScript -->
+<script src="../assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<!-- slimscrollbar scrollbar JavaScript -->
+<script src="../assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js"></script>
+<script src="../assets/extra-libs/sparkline/sparkline.js"></script>
+<!--Wave Effects -->
+<script src="../dist/js/waves.js"></script>
+<!--Menu sidebar -->
+<script src="../dist/js/sidebarmenu.js"></script>
+<!--Custom JavaScript -->
+<script src="../dist/js/custom.min.js"></script>
+<script src="../dist/js/manage-js.js"></script>
+
+<!-- This Page JS -->
+<script src="../assets/libs/inputmask/dist/min/jquery.inputmask.bundle.min.js"></script>
+<script src="../dist/js/pages/mask/mask.init.js"></script>
+<script src="../assets/libs/select2/dist/js/select2.full.min.js"></script>
+<script src="../assets/libs/select2/dist/js/select2.min.js"></script>
+<script src="../assets/libs/jquery-asColor/dist/jquery-asColor.min.js"></script>
+<script src="../assets/libs/jquery-asGradient/dist/jquery-asGradient.js"></script>
+<script src="../assets/libs/jquery-asColorPicker/dist/jquery-asColorPicker.min.js"></script>
+<script src="../assets/libs/jquery-minicolors/jquery.minicolors.min.js"></script>
+<script src="../assets/libs/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+<script src="../assets/libs/quill/dist/quill.min.js"></script>
+<script>
+  //***********************************//
+  // For select 2
+  //***********************************//
+  $(".select2").select2();
+
+  /*colorpicker*/
+  $(".demo").each(function() {
+    //
+    // Dear reader, it's actually very easy to initialize MiniColors. For example:
+    //
+    //  $(selector).minicolors();
+    //
+    // The way I've done it below is just for the demo, so don't get confused
+    // by it. Also, data- attributes aren't supported at this time...they're
+    // only used for this demo.
+    //
+    $(this).minicolors({
+      control: $(this).attr("data-control") || "hue",
+      position: $(this).attr("data-position") || "bottom left",
+
+      change: function(value, opacity) {
+        if (!value) return;
+        if (opacity) value += ", " + opacity;
+        if (typeof console === "object") {
+          console.log(value);
+        }
+      },
+      theme: "bootstrap",
+    });
+  });
+  /*datwpicker*/
+  jQuery(".mydatepicker").datepicker();
+  jQuery("#datepicker-autoclose").datepicker({
+    autoclose: true,
+    todayHighlight: true,
+  });
+  var quill = new Quill("#editor", {
+    theme: "snow",
+  });
+</script>
+<script>
+  $(document).ready(function() {
+
+    $("#file-upload-demo").fileinput({
+      'theme': 'explorer',
+      'uploadUrl': '#',
+      overwriteInitial: false,
+      initialPreviewAsData: true,
+      initialPreview: [
+
+      ],
+      initialPreviewConfig: [
+
+      ]
+    });
+
+  });
+</script>
+</body>
+
+</html>

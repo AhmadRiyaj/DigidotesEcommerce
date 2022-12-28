@@ -1,0 +1,121 @@
+<%- include('./admin_head')%> <%- include('./admin_head')%>
+
+<div
+  id="main-wrapper"
+  data-layout="vertical"
+  data-navbarbg="skin5"
+  data-sidebartype="full"
+  data-sidebar-position="absolute"
+  data-header-position="absolute"
+  data-boxed-layout="full"
+>
+  <%- include('./top') %>
+  <div class="page-wrapper">
+    <!-- ============================================================== -->
+    <!-- Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <div class="page-breadcrumb">
+      <div class="row">
+        <div class="col-12 d-flex no-block align-items-center">
+          <h4 class="page-title" style="margin-right: 10px">Testimonial</h4>
+          <span class="add_button">
+            <a href="/admin_add_testimonial" class="btn btn-sm btn-primary">
+              Add Testimonial</a
+            ></span
+          >
+          <div class="ms-auto text-end">
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">
+                  Testimonials
+                </li>
+              </ol>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container-fluid">
+      <!-- ============================================================== -->
+      <!-- Start Page Content -->
+      <!-- ============================================================== -->
+      <div class="row">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-body">
+              <h4 class="box-title">Add Testimonial</h4>
+              <% if(typeof message!== 'undefined' && message){%> <%= message %>
+              <% }%>
+              <!-- <h4 class="box-link"><a href="manage_banner.php">Add Banner</a> </h4> -->
+            </div>
+            <div class="card-body--">
+              <div class="table-stats order-table ov-h">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th class="serial">#</th>
+                      <th>Name</th>
+                      <th>Comment</th>
+                      <th>Image</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <% for (var i = 0; i < all_testimonials.length; i++) {%>
+                    <tr>
+                      <td><%= all_testimonials[i].id+1%></td>
+                      <td><%= all_testimonials[i].name%></td>
+                      <td><%= all_testimonials[i].comment%></td>
+                      <td>
+                        <img
+                          src="<%= all_testimonials[i].image%>"
+                          alt=""
+                          width="70"
+                          height="50"
+                          srcset=""
+                        />
+                      </td>
+                      <td>
+                        <span class="badge1 badge-edit"
+                          ><a
+                            href="/admin_add_testimonial?testimonial_id=<%= all_testimonials[i].id %>"
+                            >Edit</a
+                          ></span
+                        >&nbsp;
+                        <span class="badge1 badge-delete"
+                          ><a
+                            onclick="delete_testimonial('<%= all_testimonials[i].id %>')"
+                            >Delete</a
+                          ></span
+                        >
+                      </td>
+                    </tr>
+                    <% } %>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  function delete_testimonial(testimonial_id) {
+    jQuery.ajax({
+      url: "/delete_testimonial",
+      method: "get",
+      dataType: "JSON",
+      data: {
+        testimonial_id: testimonial_id,
+      },
+      success: function (result) {
+        console.log(result.message);
+        window.location.reload();
+      },
+    });
+  }
+</script>

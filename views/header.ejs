@@ -1,0 +1,211 @@
+<header class="header header-6">
+    <div class="header-top">
+        <div class="container">
+            <div class="header-left">
+                <ul class="top-menu top-link-menu d-none d-md-block">
+                    <li>
+                        <a href="#">Links</a>
+                        <ul>
+                            <li><a href="tel:+919911477922"><i class="icon-phone"></i>Call: +91 9911477922</a></li>
+                        </ul>
+                    </li>
+                </ul><!-- End .top-menu -->
+            </div><!-- End .header-left -->
+
+            <div class="header-right">
+                <div class="social-icons social-icons-color">
+                    <a href="#" class="social-icon social-facebook" title="Facebook" target="_blank"><i
+                            class="icon-facebook-f"></i></a>
+                    <a href="#" class="social-icon social-twitter" title="Twitter" target="_blank"><i
+                            class="icon-twitter"></i></a>
+                    <a href="#" class="social-icon social-instagram" title="Pinterest" target="_blank"><i
+                            class="icon-instagram"></i></a>
+                    <a href="#" class="social-icon social-pinterest" title="Instagram" target="_blank"><i
+                            class="icon-pinterest-p"></i></a>
+                </div><!-- End .soial-icons -->
+                <ul class="top-menu top-link-menu">
+                    <li>
+                        <a href="#">Links</a>
+                        <ul>
+                            <% if (typeof req.session.user_id === 'undefined') { %>
+                                <li><a href="/signup_page" ><i class="icon-user"></i>Login</a>
+                                </li>
+                              <% } else { %>
+                                <li><a href="/dashboard" ><i class="icon-user"></i>Dashboard</a>
+                                </li>
+                                <li><a href="/logout" ><i class="icon-user"></i>Logout</a>
+                                </li>
+                              <% } %>  
+                        </ul>
+                    </li>
+                </ul><!-- End .top-menu -->
+            </div><!-- End .header-right -->
+        </div>
+    </div>
+    <div class="header-middle">
+        <div class="container">
+            <div class="header-left">
+                <div class="header-search header-search-extended header-search-visible d-none d-lg-block">
+                    <a href="#" class="search-toggle" role="button"><i class="icon-search"></i></a>
+                    <form action="#" method="get">
+                        <div class="header-search-wrapper search-wrapper-wide">
+                            <label for="q" class="sr-only">Search</label>
+                            <button class="btn btn-primary" type="submit"><i class="icon-search"></i></button>
+                            <input type="search" class="form-control" name="q" id="q"
+                                placeholder="Search product ..." required>
+                        </div><!-- End .header-search-wrapper -->
+                    </form>
+                </div><!-- End .header-search -->
+            </div>
+            <div class="header-center">
+                <a href="index.html" class="logo">
+                    <img src="assets/images/Logo/logo-leather.png" alt="Molla Logo" width="82" height="20">
+                </a>
+            </div><!-- End .header-left -->
+
+            <div class="header-right">
+                <a href="/wishlist" class="wishlist-link">
+                    <i class="icon-heart-o"></i>
+                    <% if (typeof wishlist !== 'undefined' && wishlist){%>
+                    <span class="wishlist-count"><%= wishlist.length %></span>
+                    <% } %>
+                    <span class="wishlist-txt">My Wishlist</span>
+                </a>
+
+                <div class="dropdown cart-dropdown">
+                    <a href="" class="dropdown-toggle" role="button" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false" data-display="static">
+                        <i class="icon-shopping-cart"></i>
+                        <% if (typeof all_cart_products !== 'undefined' && all_cart_products.length > 0) { %>
+                            <span class="cart-count"><%= req.session.cart.length %></span>
+                        <% }else{ %>
+                            <span class="cart-count">0</span>
+                         <%  }  %>   
+                        
+                    </a>
+                    <% if(typeof all_cart_products !== 'undefined' && all_cart_products.length > 0) { %>
+                    <div class="dropdown-menu dropdown-menu-right">
+                        <div class="dropdown-cart-products">                          
+                             <% for(let i = 0; i < all_cart_products.length; i++) { %>                                
+                                <div class="product">
+                                    <div class="product-cart-details">
+                                        <h4 class="product-title">
+                                            <a href="/GetProductById?product_id=<%=all_cart_products[i][0].id  %>"><%= all_cart_products[i][0].product_title  %></a>
+                                        </h4>
+
+                                        <span class="cart-product-info">
+                                             ₹ <%= all_cart_products[i][0].product_price  %>
+                                        </span>
+                                    </div><!-- End .product-cart-details -->
+
+                                    <figure class="product-image-container">
+                                        <a href="/GetProductById?product_id=<%=all_cart_products[i][0].id  %>" class="product-image">
+                                            <img src="<%= all_cart_images[i][0].filename  %>" alt="product">
+                                        </a>
+                                    </figure>
+                                    
+                                </div>
+                            <% } %>
+                          
+                        </div><!-- End .cart-product -->
+
+                        <div class="dropdown-cart-total">
+                            <span>Total</span>
+
+                            <span class="cart-total-price">₹ <%= total_cart_price%></span>
+                        </div><!-- End .dropdown-cart-total -->
+
+                        <div class="dropdown-cart-action">
+                            <a href="/GetAllCart" class="btn btn-primary">View Cart</a>
+                            <a href="#" class="btn btn-outline-primary-2"><span>Checkout</span><i
+                                    class="icon-long-arrow-right"></i></a>
+                        </div><!-- End .dropdown-cart-total -->
+                    </div>
+                    <% } %>
+
+
+
+                </div><!-- End .cart-dropdown -->
+            </div>
+        </div><!-- End .container -->
+    </div><!-- End .header-middle -->
+
+    <div class="header-bottom sticky-header">
+        <div class="container">
+            <div class="header-left">
+                <nav class="main-nav">
+                    <ul class="menu sf-arrows">
+                        <% if( typeof index !== 'undefined' && index) {%>
+                        <li class="megamenu-container  active">
+                            <a  href="/">Home</a>
+                        </li>
+                        <% }else{%> %>
+                            <li class="megamenu-container  ">
+                                <a  href="/">Home</a>
+                            </li> 
+                         <% } %>   
+                       
+                         <% if (typeof products !== 'undefined' && products ){%>
+                            <li class="active">
+                                <a href="/product_category">Product</a>
+                            </li>
+                          <%  } else { %> 
+                            <li>
+                                <a href="/product_category">Product</a>
+                            </li>
+                          <% } %>
+
+                       
+                        <% if( typeof about !== 'undefined' && about) {%>
+                         <li class="active">
+                            <a  href="/about">About</a>
+                        </li>
+                        <% }else{%> %>
+                        
+                            <li>
+                                <a  href="/about">About</a>
+                            </li>
+                            <% } %>   
+
+
+                            <% if( typeof blog !== 'undefined' && blog) {%>
+                                <li class="active">
+                                    <a  href="/blog">Blog</a>
+                                </li>
+                               <% }else{%> %>
+                                <li >
+                                    <a  href="/blog">Blog</a>
+                                </li>
+                                   <% } %>   
+       
+
+
+                                   <% if( typeof contact !== 'undefined' && contact) {%>
+                                    
+                        <li class="active">
+                            <a   href="/contact">Contact</a>
+                        </li>
+                                   <% }else{%> %>
+                                    <li >
+                                        <a  href="/Contact">Contact</a>
+                                    </li>
+                                       <% } %>   
+           
+                     
+                    </ul><!-- End .menu -->
+                </nav><!-- End .main-nav -->
+
+                <button class="mobile-menu-toggler">
+                    <span class="sr-only">Toggle mobile menu</span>
+                    <i class="icon-bars"></i>
+                </button>
+            </div><!-- End .header-left -->
+
+            <div class="header-right">
+                <i class="la la-lightbulb-o"></i>
+                <p>Clearance Up to 30% Off</span></p>
+            </div>
+        </div><!-- End .container -->
+    </div><!-- End .header-bottom -->
+</header>
+

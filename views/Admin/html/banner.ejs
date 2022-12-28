@@ -1,0 +1,73 @@
+<%- include('./admin_head')%>
+
+
+<div
+  id="main-wrapper"
+  data-layout="vertical"
+  data-navbarbg="skin5"
+  data-sidebartype="full"
+  data-sidebar-position="absolute"
+  data-header-position="absolute"
+  data-boxed-layout="full"
+>
+  <%- include('./top') %>
+  <div class="page-wrapper">
+    <!-- ============================================================== -->
+    <!-- Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <div class="page-breadcrumb">
+      <div class="row">
+        <div class="col-12 d-flex no-block align-items-center">
+          <h4 class="page-title" style="margin-right: 10px">Banner</h4>
+          <span class="add_button">
+            <a href="manage_banner" class="btn btn-sm btn-primary">
+              Add Banner</a
+            ></span
+          >
+          <div class="ms-auto text-end">
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">
+                  Banners
+                </li>
+              </ol>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container-fluid">
+      <!-- ============================================================== -->
+      <!-- Start Page Content -->
+      <!-- ============================================================== -->
+      <div class="row">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-body">
+              <h4 class="box-title">Add Banner</h4>
+              <!-- <h4 class="box-link"><a href="manage_banner.php">Add Banner</a> </h4> -->
+            </div>
+            <div class="card-body--">
+              <div class="table-stats order-table ov-h">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th class="serial">#</th>
+                      <th>Heading1</th>
+                      <th>Heading2</th>
+                      <th>Btn Txt</th>
+                      <th>Btn Link</th>
+                      <th>Image</th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
