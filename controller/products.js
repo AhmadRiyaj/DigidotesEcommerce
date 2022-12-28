@@ -47,6 +47,8 @@ async function GetAllProducts(req, res) {
     var total_cart_price = 0;
     var all_cart_products = [];
     var all_cart_images = [];
+    var all_query_data_images = [];
+    var all_query_data = [];
     if (req.session.cart) {
         var cart = req.session.cart;
         for (let i = 0; i < cart.length; i++) {
@@ -68,7 +70,7 @@ async function GetAllProducts(req, res) {
 
     if (req.query.sub_category_id) {
         const sub_category_id = req.query.sub_category_id;
-        var all_query_data_images = [];
+        all_query_data_images = [];
         await sequelize.query("SELECT * FROM products WHERE product_sub_category_id= '" + sub_category_id + "' ").then(function (element) {
             all_query_data = element[0]
         })
@@ -79,7 +81,7 @@ async function GetAllProducts(req, res) {
         // return res.send(all_query_data_images)
         return res.render('all-products', { req: req, res: res, all_product_images_in_database: all_product_images_in_database, all_product_in_database: all_product_in_database, all_cart_products: all_cart_products, total_cart_price: total_cart_price, all_cart_images: all_cart_images, all_query_data: all_query_data, all_query_data_images: all_query_data_images })
     }
-    return res.render('all-products', { req: req, res: res, all_product_images_in_database: all_product_images_in_database, all_product_in_database: all_product_in_database, all_cart_products: all_cart_products, total_cart_price: total_cart_price, all_cart_images: all_cart_images })
+    return res.render('all-products', { req: req, res: res, all_product_images_in_database: all_product_images_in_database, all_product_in_database: all_product_in_database, all_cart_products: all_cart_products, total_cart_price: total_cart_price, all_cart_images: all_cart_images, all_query_data: all_query_data, all_query_data_images: all_query_data_images })
 }
 
 async function UpdateProduct(req, res) {

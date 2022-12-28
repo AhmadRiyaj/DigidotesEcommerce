@@ -25,7 +25,7 @@
                 	<div class="row">
                 		<div class="col-lg-9">
                             <div class="products mb-3">
-                             <% if(typeof all_query_data !== 'undefined' && all_query_data.length > 0 && all_query_data_images !== 'undefined' && all_query_data_images.length > 0 ){ %>
+                             <% if(typeof all_query_data !== 'undefined' && all_query_data.length > 0 ){ %>
                                 <div class="row justify-content-center">
                                     <% for (let i = 0; i < all_query_data.length; i++) {  %>
                                     <div class="col-6 col-md-4 col-lg-4 col-xl-3">
@@ -33,7 +33,9 @@
                                             <figure class="product-media">
                                                 <span class="product-label label-new">New</span>
                                                 <a href="/GetProductById?product_id=<%= all_query_data[i].id %>">
+                                                    <% if (typeof all_query_data_images !== undefined && all_query_data_images.length > 0) { %>
                                                     <img src="<%= all_query_data_images[i][0].filename %>" alt="Product image" class="product-image">
+                                                     <% }  %>
                                                 </a>
 
                                                 <div class="product-action-vertical">
@@ -73,7 +75,7 @@
                                     </div><!-- End .col-sm-6 col-lg-4 col-xl-3 -->
                                      <% } %>
                                 </div>
-                             <% }else{ %>
+                             <% } else { %>
                                 <div class="row justify-content-center">
                                     <% for (let i = 0; i < all_product_in_database.length; i++) {  %>
                                     <div class="col-6 col-md-4 col-lg-4 col-xl-3">
@@ -123,7 +125,7 @@
                                      <% } %>
                                 </div>
                             
-                                <% }  %>  
+                            <% }  %>  
                                
                             </div>
 
